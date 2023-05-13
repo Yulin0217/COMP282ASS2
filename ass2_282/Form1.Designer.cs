@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picture_box1 = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.Menu = new System.Windows.Forms.GroupBox();
             this.find_btn = new System.Windows.Forms.Button();
@@ -44,18 +44,19 @@
             this.FirstY = new System.Windows.Forms.TextBox();
             this.SecondX = new System.Windows.Forms.TextBox();
             this.FirstX = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.color_dialog_1 = new System.Windows.Forms.ColorDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_box1)).BeginInit();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picture_box1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(710, 768);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.picture_box1.Location = new System.Drawing.Point(1, -2);
+            this.picture_box1.Name = "picture_box1";
+            this.picture_box1.Size = new System.Drawing.Size(710, 768);
+            this.picture_box1.TabIndex = 2;
+            this.picture_box1.TabStop = false;
+            this.picture_box1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
             // 
             // listBox1
             // 
@@ -65,7 +66,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(501, 640);
             this.listBox1.TabIndex = 3;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // Menu
             // 
@@ -82,17 +82,16 @@
             this.Menu.Controls.Add(this.FirstY);
             this.Menu.Controls.Add(this.SecondX);
             this.Menu.Controls.Add(this.FirstX);
-            this.Menu.Location = new System.Drawing.Point(717, 29);
+            this.Menu.Location = new System.Drawing.Point(717, 12);
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(501, 94);
+            this.Menu.Size = new System.Drawing.Size(501, 111);
             this.Menu.TabIndex = 4;
             this.Menu.TabStop = false;
             this.Menu.Text = "Menu";
-            this.Menu.Enter += new System.EventHandler(this.Menu_Enter);
             // 
             // find_btn
             // 
-            this.find_btn.Location = new System.Drawing.Point(309, 73);
+            this.find_btn.Location = new System.Drawing.Point(309, 70);
             this.find_btn.Name = "find_btn";
             this.find_btn.Size = new System.Drawing.Size(126, 23);
             this.find_btn.TabIndex = 12;
@@ -101,12 +100,13 @@
             // 
             // remove_btn
             // 
-            this.remove_btn.Location = new System.Drawing.Point(212, 73);
+            this.remove_btn.Location = new System.Drawing.Point(212, 70);
             this.remove_btn.Name = "remove_btn";
             this.remove_btn.Size = new System.Drawing.Size(91, 23);
             this.remove_btn.TabIndex = 11;
             this.remove_btn.Text = "Remove";
             this.remove_btn.UseVisualStyleBackColor = true;
+            this.remove_btn.Click += new System.EventHandler(this.remove_btn_Click);
             // 
             // update_btn
             // 
@@ -125,6 +125,7 @@
             this.color_btn.TabIndex = 9;
             this.color_btn.Text = "Color";
             this.color_btn.UseVisualStyleBackColor = true;
+            this.color_btn.Click += new System.EventHandler(this.color_btn_Click);
             // 
             // Add_btn
             // 
@@ -134,6 +135,7 @@
             this.Add_btn.TabIndex = 8;
             this.Add_btn.Text = "Add";
             this.Add_btn.UseVisualStyleBackColor = true;
+            this.Add_btn.Click += new System.EventHandler(this.Add_btn_Click);
             // 
             // label4
             // 
@@ -206,10 +208,10 @@
             this.ClientSize = new System.Drawing.Size(1211, 759);
             this.Controls.Add(this.Menu);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picture_box1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_box1)).EndInit();
             this.Menu.ResumeLayout(false);
             this.Menu.PerformLayout();
             this.ResumeLayout(false);
@@ -233,8 +235,8 @@
         private System.Windows.Forms.ListBox listBox1;
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ColorDialog color_dialog_1;
+        private System.Windows.Forms.PictureBox picture_box1;
     }
 }
 

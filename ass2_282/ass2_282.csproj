@@ -7,7 +7,7 @@
     <ProjectGuid>{6ADE1482-A33C-43F9-A121-75A236B05831}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DrawLines</RootNamespace>
-    <AssemblyName>ASS2</AssemblyName>
+    <AssemblyName>ass2_282</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -58,6 +58,7 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
