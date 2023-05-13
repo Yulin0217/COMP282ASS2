@@ -25,18 +25,6 @@ namespace DrawLines
         {
             MessageBox.Show("Times up");
         }
-
-        private void BtnRandom_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            Point first = new Point((int)(picLines.Size.Width * rnd.NextDouble()), (int)(picLines.Size.Height * rnd.NextDouble()));
-            Point second = new Point((int)(picLines.Size.Width * rnd.NextDouble()), (int)(picLines.Size.Height * rnd.NextDouble()));
-            Color c = Color.FromArgb((int)(255 * rnd.NextDouble()), (int)(255 * rnd.NextDouble()),(int)(255 * rnd.NextDouble()));
-            Tuple<Point, Point, Color> l = new Tuple<Point, Point, Color>(first, second, c);
-            lines.Add(l);
-             picLines.Invalidate();
-        }
-
         List<Tuple<Point, Point, Color>> lines = new List<Tuple<Point, Point, Color>>();
         private void PicLines_Paint(object sender, PaintEventArgs e)
         {
@@ -66,6 +54,16 @@ namespace DrawLines
         private void BtnRandom_MouseUp(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void Menu_Enter(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
