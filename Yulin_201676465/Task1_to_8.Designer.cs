@@ -1,6 +1,6 @@
 ﻿namespace DrawLines
 {
-    partial class Task1_8
+    partial class Task1_to_8
     {
         /// <summary>
         /// Required designer variable.
@@ -212,7 +212,7 @@
             this.Controls.Add(this.Menu);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.picture_box1);
-            this.Name = "Task1_8";
+            this.Name = "Task1_to_8";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.picture_box1)).EndInit();
             this.Menu.ResumeLayout(false);

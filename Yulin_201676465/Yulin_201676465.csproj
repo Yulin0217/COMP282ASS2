@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Task1_8.cs">
+    <Compile Include="Task1_to_8.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Task1_8.Designer.cs">
-      <DependentUpon>Task1_8.cs</DependentUpon>
+    <Compile Include="Task1_to_8.Designer.cs">
+      <DependentUpon>Task1_to_8.cs</DependentUpon>
     </Compile>
     <Compile Include="Task9.cs">
       <SubType>Form</SubType>
@@ -61,8 +61,8 @@
     <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Task1_8.resx">
-      <DependentUpon>Task1_8.cs</DependentUpon>
+    <EmbeddedResource Include="Task1_to_8.resx">
+      <DependentUpon>Task1_to_8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

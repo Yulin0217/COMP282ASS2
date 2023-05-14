@@ -6,12 +6,12 @@ using System.Text.RegularExpressions;
 
 namespace DrawLines
 {
-    public partial class Task1_8 : Form
+    public partial class Task1_to_8 : Form
     {
         private List<Line> _lines = new List<Line>();
         private List<Point> _points = new List<Point>();
 
-        public Task1_8()
+        public Task1_to_8()
         {
             InitializeComponent();
         }
