@@ -54,8 +54,8 @@ namespace DrawLines
                 string inputFirsty = FirstY.Text.Trim();
                 string inputSecondx = SecondX.Text.Trim();
                 string inputSecondy = SecondY.Text.Trim();
-                if (Regex.IsMatch(inputFirstx, "^[0-9]+$") || Regex.IsMatch(inputFirsty, "^[0-9]+$") || Regex.IsMatch(
-                        inputSecondx, "^[0-9]+$") || Regex.IsMatch(inputSecondy, "^[0-9]+$"))
+                if (Regex.IsMatch(inputFirstx, "^[0-9]+$") && Regex.IsMatch(inputFirsty, "^[0-9]+$") && Regex.IsMatch(
+                        inputSecondx, "^[0-9]+$") && Regex.IsMatch(inputSecondy, "^[0-9]+$"))
                 {
                     point1.X = int.Parse(inputFirstx);
                     point1.Y = int.Parse(inputFirsty);
@@ -179,8 +179,8 @@ namespace DrawLines
                 string inputFirsty = FirstY.Text.Trim();
                 string inputSecondx = SecondX.Text.Trim();
                 string inputSecondy = SecondY.Text.Trim();
-                if (Regex.IsMatch(inputFirstx, "^[0-9]+$") || Regex.IsMatch(inputFirsty, "^[0-9]+$") || Regex.IsMatch(
-                        inputSecondx, "^[0-9]+$") || Regex.IsMatch(inputSecondy, "^[0-9]+$"))
+                if (Regex.IsMatch(inputFirstx, "^[0-9]+$") && Regex.IsMatch(inputFirsty, "^[0-9]+$") && Regex.IsMatch(
+                        inputSecondx, "^[0-9]+$") && Regex.IsMatch(inputSecondy, "^[0-9]+$"))
                 {
                     new_point1.X = int.Parse(inputFirstx);
                     new_point1.Y = int.Parse(inputFirsty);

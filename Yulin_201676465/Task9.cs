@@ -157,8 +157,8 @@ namespace DrawLines
                 string inputFirsty = FirstY.ToString();
                 string inputSecondx = SecondX.ToString();
                 string inputSecondy = SecondY.ToString();
-                if (!(Regex.IsMatch(inputFirstx, "^[0-9]+$") || Regex.IsMatch(inputFirsty, "^[0-9]+$") || Regex.IsMatch(
-                        inputSecondx, "^[0-9]+$") || Regex.IsMatch(inputSecondy, "^[0-9]+$")))
+                if (!(Regex.IsMatch(inputFirstx, "^[0-9]+$") && Regex.IsMatch(inputFirsty, "^[0-9]+$") && Regex.IsMatch(
+                        inputSecondx, "^[0-9]+$") && Regex.IsMatch(inputSecondy, "^[0-9]+$")))
                 {
                     MessageBox.Show("Can't be not digits!!!");
                     return;
