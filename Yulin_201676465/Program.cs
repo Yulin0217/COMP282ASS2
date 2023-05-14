@@ -16,7 +16,7 @@ namespace DrawLines
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Task9());
+            Application.Run(new Task1_to_8());
         }
     }
 }

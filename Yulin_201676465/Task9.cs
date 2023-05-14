@@ -97,11 +97,15 @@ namespace DrawLines
             //Check whether there is no line
             if (_lines.Count == 0)
             {
-                MessageBox.Show("Nothing selected or select empty cell");
+                MessageBox.Show("Nothing selected or select empty cell!!!");
                 return;
             }
-
-
+            //Check if selsect empty cell
+            if (selected_cell.Value == null)
+            {
+                MessageBox.Show("Do not select empty cell!");
+                return;
+            }
             _lines.RemoveAt(selected_cell.RowIndex);
             draw_add();
             if (_lines.Count == 0)
