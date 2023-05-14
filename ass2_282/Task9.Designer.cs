@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace DrawLines
 {
-    partial class Form2
+    partial class Task9
     {
         /// <summary>
         /// Required designer variable.

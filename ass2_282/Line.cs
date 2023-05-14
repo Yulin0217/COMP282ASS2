@@ -36,7 +36,7 @@ namespace DrawLines
 
         public override string ToString()
         {
-            return $"Start point: (X={_point1.X}, Y={_point2.Y}), End point: (X={_point1.X}, Y={_point2.Y})";
+            return $"Start point: (X={_point1.X}, Y={_point1.Y}), End point: (X={_point2.X}, Y={_point2.Y})";
         }
     }
 }

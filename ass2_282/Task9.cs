@@ -2,9 +2,9 @@
 
 namespace DrawLines
 {
-    public partial class Form2 : Form
+    public partial class Task9 : Form
     {
-        public Form2()
+        public Task9()
         {
             InitializeComponent();
         }
