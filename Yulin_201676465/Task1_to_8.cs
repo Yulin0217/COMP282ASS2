@@ -149,6 +149,7 @@ namespace DrawLines
                 FirstY.Clear();
                 SecondX.Clear();
                 SecondY.Clear();
+                MessageBox.Show("All lines are deleted!");
             }
         }
 

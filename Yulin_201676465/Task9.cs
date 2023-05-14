@@ -114,6 +114,7 @@ namespace DrawLines
                 remove_btn.Enabled = false;
                 Graphics g = picture_box2.CreateGraphics();
                 g.Clear(Color.White);
+                MessageBox.Show("All lines are deleted");
             }
         }
 
