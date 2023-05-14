@@ -184,5 +184,166 @@ namespace DrawLines
                 MessageBox.Show("Please click Color cell again");
             }
         }
+        public void draw_circle(List<Point> centers)
+        {
+            Graphics g = picture_box2.CreateGraphics();
+            foreach (var item in centers)
+            {
+                //Set radius
+                int r = 4;
+                Pen pen = new Pen(color_btn.ForeColor);
+                g.DrawEllipse(pen, item.X - r, item.Y - r, r * 2, r * 2);
+            }
+        }
+        private void find_btn_Click(object sender, EventArgs e)
+        {
+            List<Point> intersections = new List<Point>();
+            //Check every pair using nested loop
+            for (int i = 0; i < _lines.Count; i++)
+            {
+                for (int j = i + 1; j < _lines.Count; j++)
+                {
+                    Point its = return_intersection(_lines[i], _lines[j]);
+                    //If there is no intersection the X and Y of the Point will be -99
+                    if (!(its.X == -99 && its.Y == -99))
+                    {
+                        intersections.Add(its);
+                    }
+                }
+            }
+
+            if (intersections.Count == 0)
+            {
+                MessageBox.Show("There may be overlap but no intersections.");
+            }
+            draw_circle(intersections);
+        } private Point return_intersection(Line line1, Line line2)
+        {
+            int line1_x1 = line1.Point1.X;
+            int line1_y1 = line1.Point1.Y;
+            int line1_x2 = line1.Point2.X;
+            int line1_y2 = line1.Point2.Y;
+            
+            int line2_x1 = line2.Point1.X;
+            int line2_y1 = line2.Point1.Y;
+            int line2_x2 = line2.Point2.X;
+            int line2_y2 = line2.Point2.Y;
+
+            int dx1 = line1_x1 - line1_x2;
+            int dy1 = line1_y1 - line1_y2;
+            int dx2 = line2_x1 - line2_x2;
+            int dy2 = line2_y1 - line2_y2;
+            //Check if parallel
+            if (dx1 * dy2 == dy1 * dx2)
+            {
+                //Check if on the same line
+                if ((line1_x1 - line2_x1) * dy1 == (line1_y1 - line2_y1) * dx1)
+                {  //parallel to the y lable
+                    if (dx1 == 0 && dx2 == 0)
+                    {
+                        int min_line1_y = Math.Min(line1_y1, line1_y2);
+                        int max_line1_y = Math.Max(line1_y1, line1_y2);
+                        int min_line2_y = Math.Min(line2_y1, line2_y2);
+                        int max_line2_y = Math.Max(line2_y1, line2_y2);
+                        //Check if overlap
+                        if (!(max_line1_y < min_line2_y || min_line1_y > max_line2_y))
+                        {
+                            int max_y1 = Math.Max(line1_y1, line2_y1);
+                            int min_y2 = Math.Min(line1_y2, line2_y2);
+                            if (max_y1 == line1_y1)
+                            {
+                                //line1_point1
+                                if (min_y2 == line1_y2)
+                                {// line1 point1 and line1 point2
+                                    Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                                else
+                                {//line1_point1 and line2 point2
+                                    Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                            }
+                            else
+                            {//line 2 point 1 
+                                if (min_y2 == line1_y2)
+                                {//line 2 point 1 and line 1 point2 
+                                    Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                                else
+                                {//line 2 point 1 and line 2 point2 
+                                    Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    { // not parallel to the x label
+                        int min_line1 = Math.Min(line1_x1, line1_x2);
+                        int max_line1 = Math.Max(line1_x1, line1_x2);
+                        int min_line2 = Math.Min(line2_x1, line2_x2);
+                        int max_line2 = Math.Max(line2_x1, line2_x2);
+                        //Check overlap
+                        if (!(max_line1 < min_line2 || min_line1 > max_line2))
+                        {
+                            int max_x1 = Math.Max(line1_x1, line2_x1);
+                            int min_x2 = Math.Min(line1_x2, line2_x2);
+                            if (max_x1 == line1_x1)
+                            {
+                                //line1 point1
+                                if (min_x2 == line1_x2)
+                                {//line1 point1 and line1_point2
+                                    Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                                else
+                                {//line1 point1 and line2_point2
+                                    Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                            }
+                            else
+                            {  //line2 point1
+                                if (min_x2 == line1_x2)
+                                { //line2 point 1 and line1 point2
+                                    Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                                else
+                                {//line2 point 1 and line2 point2
+                                    Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
+                                    DrawLine(line);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Lines are not parallel or coincident
+                int denominator = (line1_x1 - line1_x2) * (line2_y1 - line2_y2) - (line1_y1 - line1_y2) * (line2_x1 - line2_x2);
+                double intersection_x = ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_x1 - line2_x2) - (line1_x1 - line1_x2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
+                double intersection_y =  ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_y1 - line2_y2) - (line1_y1- line1_y2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
+                //Check if intersection within in limited line
+                if (check_bounds(intersection_x,intersection_y,line1)|| check_bounds(intersection_x,intersection_y,line2))
+                {
+                    return new Point((int)intersection_x, (int)intersection_y);
+                }
+            }
+
+            return new Point(-99, -99);
+        }
+        private bool check_bounds(double x, double y, Line line)
+        {
+            int minX = Math.Min(line.Point1.X, line.Point2.X);
+            int maxX = Math.Max(line.Point1.X, line.Point2.X);
+            int minY = Math.Min(line.Point1.Y, line.Point2.Y);
+            int maxY = Math.Max(line.Point1.Y, line.Point2.Y);
+
+            return x >= minX && x <= maxX && y >= minY && y <= maxY;
+        }
     }
 }

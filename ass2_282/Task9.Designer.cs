@@ -133,6 +133,7 @@ namespace DrawLines
             this.find_btn.TabIndex = 13;
             this.find_btn.Text = "Find InterSections";
             this.find_btn.UseVisualStyleBackColor = true;
+            this.find_btn.Click += new System.EventHandler(this.find_btn_Click);
             // 
             // picture_box2
             // 

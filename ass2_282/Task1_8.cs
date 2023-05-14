@@ -239,7 +239,7 @@ namespace DrawLines
 
             if (intersections.Count == 0)
             {
-                MessageBox.Show("There is no intersections.");
+                MessageBox.Show("There may be overlap but no intersections.");
             }
             draw_circle(intersections);
         }
