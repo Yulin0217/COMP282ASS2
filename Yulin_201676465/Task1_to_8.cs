@@ -17,7 +17,8 @@ namespace DrawLines
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
-        { remove_btn.Enabled = true;
+        {
+            remove_btn.Enabled = true;
             if (e.Button == MouseButtons.Left)
             {
                 //Add location to points container
@@ -141,6 +142,14 @@ namespace DrawLines
                 // No item selected, display error message
                 MessageBox.Show("Please select a line to remove.");
             }
+            //Clear input text when all lines are deleted
+            if (_lines.Count == 0)
+            {
+                FirstX.Clear();
+                FirstY.Clear();
+                SecondX.Clear();
+                SecondY.Clear();
+            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -241,6 +250,7 @@ namespace DrawLines
             {
                 MessageBox.Show("There may be overlap but no intersections.");
             }
+
             draw_circle(intersections);
         }
 
@@ -259,7 +269,7 @@ namespace DrawLines
             int line1_y1 = line1.Point1.Y;
             int line1_x2 = line1.Point2.X;
             int line1_y2 = line1.Point2.Y;
-            
+
             int line2_x1 = line2.Point1.X;
             int line2_y1 = line2.Point1.Y;
             int line2_x2 = line2.Point2.X;
@@ -274,7 +284,8 @@ namespace DrawLines
             {
                 //Check if on the same line
                 if ((line1_x1 - line2_x1) * dy1 == (line1_y1 - line2_y1) * dx1)
-                {  //parallel to the y lable
+                {
+                    //parallel to the y lable
                     if (dx1 == 0 && dx2 == 0)
                     {
                         int min_line1_y = Math.Min(line1_y1, line1_y2);
@@ -290,25 +301,30 @@ namespace DrawLines
                             {
                                 //line1_point1
                                 if (min_y2 == line1_y2)
-                                {// line1 point1 and line1 point2
+                                {
+                                    // line1 point1 and line1 point2
                                     Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
                                 else
-                                {//line1_point1 and line2 point2
+                                {
+                                    //line1_point1 and line2 point2
                                     Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
                             }
                             else
-                            {//line 2 point 1 
+                            {
+                                //line 2 point 1 
                                 if (min_y2 == line1_y2)
-                                {//line 2 point 1 and line 1 point2 
+                                {
+                                    //line 2 point 1 and line 1 point2 
                                     Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
                                 else
-                                {//line 2 point 1 and line 2 point2 
+                                {
+                                    //line 2 point 1 and line 2 point2 
                                     Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
@@ -316,7 +332,8 @@ namespace DrawLines
                         }
                     }
                     else
-                    { // not parallel to the x label
+                    {
+                        // not parallel to the x label
                         int min_line1 = Math.Min(line1_x1, line1_x2);
                         int max_line1 = Math.Max(line1_x1, line1_x2);
                         int min_line2 = Math.Min(line2_x1, line2_x2);
@@ -330,25 +347,30 @@ namespace DrawLines
                             {
                                 //line1 point1
                                 if (min_x2 == line1_x2)
-                                {//line1 point1 and line1_point2
+                                {
+                                    //line1 point1 and line1_point2
                                     Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
                                 else
-                                {//line1 point1 and line2_point2
+                                {
+                                    //line1 point1 and line2_point2
                                     Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
                             }
                             else
-                            {  //line2 point1
+                            {
+                                //line2 point1
                                 if (min_x2 == line1_x2)
-                                { //line2 point 1 and line1 point2
+                                {
+                                    //line2 point 1 and line1 point2
                                     Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
                                 else
-                                {//line2 point 1 and line2 point2
+                                {
+                                    //line2 point 1 and line2 point2
                                     Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
                                     draw_line(line);
                                 }
@@ -360,11 +382,17 @@ namespace DrawLines
             else
             {
                 // Lines are not parallel or coincident
-                int denominator = (line1_x1 - line1_x2) * (line2_y1 - line2_y2) - (line1_y1 - line1_y2) * (line2_x1 - line2_x2);
-                double intersection_x = ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_x1 - line2_x2) - (line1_x1 - line1_x2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
-                double intersection_y =  ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_y1 - line2_y2) - (line1_y1- line1_y2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
+                int denominator = (line1_x1 - line1_x2) * (line2_y1 - line2_y2) -
+                                  (line1_y1 - line1_y2) * (line2_x1 - line2_x2);
+                double intersection_x =
+                    ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_x1 - line2_x2) -
+                     (line1_x1 - line1_x2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
+                double intersection_y =
+                    ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_y1 - line2_y2) -
+                     (line1_y1 - line1_y2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
                 //Check if intersection within in limited line
-                if (check_bounds(intersection_x,intersection_y,line1)|| check_bounds(intersection_x,intersection_y,line2))
+                if (check_bounds(intersection_x, intersection_y, line1) ||
+                    check_bounds(intersection_x, intersection_y, line2))
                 {
                     return new Point((int)intersection_x, (int)intersection_y);
                 }
@@ -372,6 +400,7 @@ namespace DrawLines
 
             return new Point(-99, -99);
         }
+
         private bool check_bounds(double x, double y, Line line)
         {
             int minX = Math.Min(line.Point1.X, line.Point2.X);
