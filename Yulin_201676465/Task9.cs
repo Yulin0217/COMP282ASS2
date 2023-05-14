@@ -52,14 +52,14 @@ namespace DrawLines
             }
         }
 
-        private void DrawLine(Line line)
+        private void draw_line(Line line)
         {
             Graphics g = picture_box2.CreateGraphics();
             Pen pen = new Pen(color_btn.ForeColor);
             g.DrawLine(pen, line.Point1, line.Point2);
         }
 
-        private void DrawLine_for_grid()
+        private void draw_line_for_grid()
         {
             Graphics g = picture_box2.CreateGraphics();
             g.Clear(picture_box2.BackColor);
@@ -80,7 +80,7 @@ namespace DrawLines
                 if (_points.Count == 2)
                 {
                     //Use start and end position to make a line
-                    Line line = new Line(_points.ToArray()[0], _points.ToArray()[1], color_btn.ForeColor);
+                    Line line = new Line(_points[0], _points[1], color_btn.ForeColor);
                     _lines.Add(line);
                     draw_add();
                     _points.Clear();
@@ -135,17 +135,18 @@ namespace DrawLines
         {
             try
             {
-                DataGridViewCell cell = dataGridView1.CurrentCell;
-
-                if (cell.Value == null)
+                DataGridViewCell selected_cell = dataGridView1.CurrentCell;
+                //If selected a null cell, stop continue, waiting for input
+                if (selected_cell.Value == null)
                 {
                     return;
                 }
-
-                var FirstX = dataGridView1.Rows[cell.RowIndex].Cells[0].Value;
-                var FirstY = dataGridView1.Rows[cell.RowIndex].Cells[1].Value;
-                var SecondX = dataGridView1.Rows[cell.RowIndex].Cells[2].Value;
-                var SecondY = dataGridView1.Rows[cell.RowIndex].Cells[3].Value;
+                
+                //Check whether any of cell in this row is null
+                var FirstX = dataGridView1.Rows[selected_cell.RowIndex].Cells[0].Value;
+                var FirstY = dataGridView1.Rows[selected_cell.RowIndex].Cells[1].Value;
+                var SecondX = dataGridView1.Rows[selected_cell.RowIndex].Cells[2].Value;
+                var SecondY = dataGridView1.Rows[selected_cell.RowIndex].Cells[3].Value;
                 if (FirstX == null || FirstY == null || SecondX == null || SecondY == null)
                 {
                     return;
@@ -168,16 +169,16 @@ namespace DrawLines
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
                     // Get first element in row
-                    int X1 = int.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString());
-                    int Y1 = int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString());
-                    int X2 = int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString());
-                    int Y2 = int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString());
-                    Color colorSet = dataGridView1.Rows[i].Cells[4].Style.BackColor;
-                    Line line = new Line(new Point(X1, Y1), new Point(X2, Y2), colorSet);
+                    int first_x = int.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                    int first_y = int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString());
+                    int second_x = int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString());
+                    int second_y = int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString());
+                    Color line_color = dataGridView1.Rows[i].Cells[4].Style.BackColor;
+                    Line line = new Line(new Point(first_x, first_y), new Point(second_x, second_y), line_color);
                     _lines.Add(line);
                 }
 
-                DrawLine_for_grid();
+                draw_line_for_grid();
             }
             catch (Exception e1)
             {
@@ -256,12 +257,12 @@ namespace DrawLines
                                 if (min_y2 == line1_y2)
                                 {// line1 point1 and line1 point2
                                     Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line1_point1 and line2 point2
                                     Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                             else
@@ -269,12 +270,12 @@ namespace DrawLines
                                 if (min_y2 == line1_y2)
                                 {//line 2 point 1 and line 1 point2 
                                     Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line 2 point 1 and line 2 point2 
                                     Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                         }
@@ -296,12 +297,12 @@ namespace DrawLines
                                 if (min_x2 == line1_x2)
                                 {//line1 point1 and line1_point2
                                     Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line1 point1 and line2_point2
                                     Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                             else
@@ -309,12 +310,12 @@ namespace DrawLines
                                 if (min_x2 == line1_x2)
                                 { //line2 point 1 and line1 point2
                                     Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line2 point 1 and line2 point2
                                     Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                         }

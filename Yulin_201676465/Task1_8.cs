@@ -25,7 +25,7 @@ namespace DrawLines
                 if (_points.Count == 2)
                 {
                     //Use start and end position to make a line
-                    Line line = new Line(_points.ToArray()[0], _points.ToArray()[1], color_btn.ForeColor);
+                    Line line = new Line(_points[0], _points[1], color_btn.ForeColor);
                     _lines.Add(line);
                     draw_add();
                     _points.Clear();
@@ -103,29 +103,29 @@ namespace DrawLines
         private void remove_btn_Click(object sender, EventArgs e)
         {
             // Get the currently selected item index
-            int selectedIndex = listBox1.SelectedIndex;
+            int selected_index = listBox1.SelectedIndex;
 
             // Check if an item is selected
-            if (selectedIndex >= 0)
+            if (selected_index >= 0)
             {
                 //re-activate remove button
                 remove_btn.Enabled = true;
                 // Remove  from the container class
-                _lines.RemoveAt(selectedIndex);
+                _lines.RemoveAt(selected_index);
                 // Remove  from the list box
-                listBox1.Items.RemoveAt(selectedIndex);
+                listBox1.Items.RemoveAt(selected_index);
                 // Redraw
                 draw_add();
                 // Check if lines in the container
                 if (_lines.Count > 0)
                 {
                     // Set the selected index to be an adjacent line
-                    if (selectedIndex >= _lines.Count)
+                    if (selected_index >= _lines.Count)
                     {
-                        selectedIndex--;
+                        selected_index--;
                     }
 
-                    listBox1.SelectedIndex = selectedIndex;
+                    listBox1.SelectedIndex = selected_index;
                 }
                 else
                 {
@@ -244,7 +244,7 @@ namespace DrawLines
             draw_circle(intersections);
         }
 
-        private void DrawLine(Line line)
+        private void draw_line(Line line)
         {
             using (Graphics g = picture_box1.CreateGraphics())
             {
@@ -292,12 +292,12 @@ namespace DrawLines
                                 if (min_y2 == line1_y2)
                                 {// line1 point1 and line1 point2
                                     Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line1_point1 and line2 point2
                                     Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                             else
@@ -305,12 +305,12 @@ namespace DrawLines
                                 if (min_y2 == line1_y2)
                                 {//line 2 point 1 and line 1 point2 
                                     Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line 2 point 1 and line 2 point2 
                                     Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                         }
@@ -332,12 +332,12 @@ namespace DrawLines
                                 if (min_x2 == line1_x2)
                                 {//line1 point1 and line1_point2
                                     Line line = new Line(line1.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line1 point1 and line2_point2
                                     Line line = new Line(line1.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                             else
@@ -345,12 +345,12 @@ namespace DrawLines
                                 if (min_x2 == line1_x2)
                                 { //line2 point 1 and line1 point2
                                     Line line = new Line(line2.Point1, line1.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                                 else
                                 {//line2 point 1 and line2 point2
                                     Line line = new Line(line2.Point1, line2.Point2, color_btn.ForeColor);
-                                    DrawLine(line);
+                                    draw_line(line);
                                 }
                             }
                         }
