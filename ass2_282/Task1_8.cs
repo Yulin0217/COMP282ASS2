@@ -22,7 +22,7 @@ namespace DrawLines
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
+        { remove_btn.Enabled = true;
             if (e.Button == MouseButtons.Left)
             {
                 //Add location to points container
@@ -242,6 +242,10 @@ namespace DrawLines
                 }
             }
 
+            if (intersections.Count == 0)
+            {
+                MessageBox.Show("There is no intersections.");
+            }
             draw_circle(intersections);
         }
 
@@ -249,7 +253,7 @@ namespace DrawLines
         {
             using (Graphics g = picture_box1.CreateGraphics())
             {
-                Pen pen = new Pen(Color.Red);
+                Pen pen = new Pen(color_btn.ForeColor);
                 g.DrawLine(pen, line.Point1, line.Point2);
             }
         }
@@ -260,6 +264,7 @@ namespace DrawLines
             int line1_y1 = line1.Point1.Y;
             int line1_x2 = line1.Point2.X;
             int line1_y2 = line1.Point2.Y;
+            
             int line2_x1 = line2.Point1.X;
             int line2_y1 = line2.Point1.Y;
             int line2_x2 = line2.Point2.X;
@@ -316,7 +321,7 @@ namespace DrawLines
                         }
                     }
                     else
-                    {
+                    { // not parallel to the x label
                         int min_line1 = Math.Min(line1_x1, line1_x2);
                         int max_line1 = Math.Max(line1_x1, line1_x2);
                         int min_line2 = Math.Min(line2_x1, line2_x2);
@@ -360,10 +365,26 @@ namespace DrawLines
             else
             {
                 // Lines are not parallel or coincident
-                return new Point(-99, -99);
+                int denominator = (line1_x1 - line1_x2) * (line2_y1 - line2_y2) - (line1_y1 - line1_y2) * (line2_x1 - line2_x2);
+                double intersection_x = ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_x1 - line2_x2) - (line1_x1 - line1_x2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
+                double intersection_y =  ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_y1 - line2_y2) - (line1_y1- line1_y2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
+                //Check if intersection within in limited line
+                if (check_bounds(intersection_x,intersection_y,line1)|| check_bounds(intersection_x,intersection_y,line2))
+                {
+                    return new Point((int)intersection_x, (int)intersection_y);
+                }
             }
 
             return new Point(-99, -99);
+        }
+        private bool check_bounds(double x, double y, Line line)
+        {
+            int minX = Math.Min(line.Point1.X, line.Point2.X);
+            int maxX = Math.Max(line.Point1.X, line.Point2.X);
+            int minY = Math.Min(line.Point1.Y, line.Point2.Y);
+            int maxY = Math.Max(line.Point1.Y, line.Point2.Y);
+
+            return x >= minX && x <= maxX && y >= minY && y <= maxY;
         }
     }
 }
