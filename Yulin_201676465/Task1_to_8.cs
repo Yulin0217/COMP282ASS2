@@ -142,6 +142,7 @@ namespace DrawLines
                 // No item selected, display error message
                 MessageBox.Show("Please select a line to remove.");
             }
+
             //Clear input text when all lines are deleted
             if (_lines.Count == 0)
             {
@@ -392,7 +393,7 @@ namespace DrawLines
                     ((line1_x1 * line1_y2 - line1_y1 * line1_x2) * (line2_y1 - line2_y2) -
                      (line1_y1 - line1_y2) * (line2_x1 * line2_y2 - line2_y1 * line2_x2)) / denominator;
                 //Check if intersection within in limited line
-                if (check_bounds(intersection_x, intersection_y, line1) ||
+                if (check_bounds(intersection_x, intersection_y, line1) &&
                     check_bounds(intersection_x, intersection_y, line2))
                 {
                     return new Point((int)intersection_x, (int)intersection_y);
