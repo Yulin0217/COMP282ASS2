@@ -208,7 +208,7 @@ namespace DrawLines
             }
             catch (Exception e1)
             {
-                MessageBox.Show("Please click Color cell again");
+                MessageBox.Show("Please click Color cell again to select line color");
             }
         }
 
