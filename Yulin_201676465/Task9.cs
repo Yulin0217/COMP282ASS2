@@ -184,10 +184,11 @@ namespace DrawLines
                     MessageBox.Show("May not digits!");
                     return;
                 }
+                //Check if all zero or negative
                 if (int.Parse(inputFirstx) <= 0 && int.Parse(inputFirsty) <= 0 && int.Parse(inputSecondx) <= 0 &&
                     int.Parse(inputSecondy) <= 0)
                 {
-                    MessageBox.Show("Your entered cordinates are all negative or zero and could not display.");
+                    MessageBox.Show("Your entered cordinates are all negative or zero and could not display(But are still added to line).");
                 }
                 _lines.Clear();
                 
