@@ -55,9 +55,16 @@ namespace DrawLines
                 string inputFirsty = FirstY.Text.Trim();
                 string inputSecondx = SecondX.Text.Trim();
                 string inputSecondy = SecondY.Text.Trim();
-                if (Regex.IsMatch(inputFirstx, "^[0-9]+$") && Regex.IsMatch(inputFirsty, "^[0-9]+$") && Regex.IsMatch(
-                        inputSecondx, "^[0-9]+$") && Regex.IsMatch(inputSecondy, "^[0-9]+$"))
+                if (Regex.IsMatch(inputFirstx, "^(-)?[0-9]+$") && Regex.IsMatch(inputFirsty, "^(-)?[0-9]+$") &&
+                    Regex.IsMatch(
+                        inputSecondx, "^(-)?[0-9]+$") && Regex.IsMatch(inputSecondy, "^(-)?[0-9]+$"))
                 {
+                    if (int.Parse(inputFirstx) <= 0 && int.Parse(inputFirsty) <= 0 && int.Parse(inputSecondx) <= 0 &&
+                        int.Parse(inputSecondy) <= 0)
+                    {
+                        MessageBox.Show("Your entered cordinates are all negative or zero and could not display.");
+                    }
+
                     point1.X = int.Parse(inputFirstx);
                     point1.Y = int.Parse(inputFirsty);
                     point2.X = int.Parse(inputSecondx);
@@ -190,9 +197,16 @@ namespace DrawLines
                 string inputFirsty = FirstY.Text.Trim();
                 string inputSecondx = SecondX.Text.Trim();
                 string inputSecondy = SecondY.Text.Trim();
-                if (Regex.IsMatch(inputFirstx, "^[0-9]+$") && Regex.IsMatch(inputFirsty, "^[0-9]+$") && Regex.IsMatch(
-                        inputSecondx, "^[0-9]+$") && Regex.IsMatch(inputSecondy, "^[0-9]+$"))
+                if (Regex.IsMatch(inputFirstx, "^(-)?[0-9]+$") && Regex.IsMatch(inputFirsty, "^(-)?[0-9]+$") &&
+                    Regex.IsMatch(
+                        inputSecondx, "^(-)?[0-9]+$") && Regex.IsMatch(inputSecondy, "^(-)?[0-9]+$"))
                 {
+                    if (int.Parse(inputFirstx) <= 0 && int.Parse(inputFirsty) <= 0 && int.Parse(inputSecondx) <= 0 &&
+                        int.Parse(inputSecondy) <= 0)
+                    {
+                        MessageBox.Show("Your entered cordinates are all negative or zero and could not display.");
+                    }
+
                     new_point1.X = int.Parse(inputFirstx);
                     new_point1.Y = int.Parse(inputFirsty);
                     new_point2.X = int.Parse(inputSecondx);

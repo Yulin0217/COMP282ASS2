@@ -172,21 +172,25 @@ namespace DrawLines
                 {
                     return;
                 }
-
+            
                 //Check if digits using regex
                 string inputFirstx = FirstX.ToString();
                 string inputFirsty = FirstY.ToString();
                 string inputSecondx = SecondX.ToString();
                 string inputSecondy = SecondY.ToString();
-                if (!(Regex.IsMatch(inputFirstx, "^[0-9]+$") && Regex.IsMatch(inputFirsty, "^[0-9]+$") && Regex.IsMatch(
-                        inputSecondx, "^[0-9]+$") && Regex.IsMatch(inputSecondy, "^[0-9]+$")))
+                if (!(Regex.IsMatch(inputFirstx, "^(-)?[0-9]+$") && Regex.IsMatch(inputFirsty, "^(-)?[0-9]+$") && Regex.IsMatch(
+                        inputSecondx, "^(-)?[0-9]+$") && Regex.IsMatch(inputSecondy, "^(-)?[0-9]+$")))
                 {
-                    MessageBox.Show("Can't be not digits!!!");
+                    MessageBox.Show("May not digits!");
                     return;
                 }
-
+                if (int.Parse(inputFirstx) <= 0 && int.Parse(inputFirsty) <= 0 && int.Parse(inputSecondx) <= 0 &&
+                    int.Parse(inputSecondy) <= 0)
+                {
+                    MessageBox.Show("Your entered cordinates are all negative or zero and could not display.");
+                }
                 _lines.Clear();
-
+                
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
                     // Get first element in row
