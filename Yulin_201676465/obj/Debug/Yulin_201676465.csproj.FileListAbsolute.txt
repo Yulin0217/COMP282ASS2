@@ -1,0 +1,11 @@
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\Yulin_201676465.csproj.AssemblyReference.cache
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\Yulin_201676465.csproj.SuggestedBindingRedirects.cache
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\DrawLines.Task1_to_8.resources
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\DrawLines.Properties.Resources.resources
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\Yulin_201676465.csproj.GenerateResource.cache
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\bin\Debug\Yulin_201676465.exe.config
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\bin\Debug\Yulin_201676465.exe
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\bin\Debug\Yulin_201676465.pdb
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\Yulin_201676465.csproj.CoreCompileInputs.cache
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\Yulin_201676465.exe
+C:\Users\Yulin\RiderProjects\COMP282ASS2\Yulin_201676465\obj\Debug\Yulin_201676465.pdb
